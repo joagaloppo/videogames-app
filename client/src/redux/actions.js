@@ -6,8 +6,8 @@ export function getGames() {
 	};
 }
 
-export function resetGames() {
-	return { type: "RESET_GAMES" };
+export function resetQuery() {
+	return { type: "RESET_QUERY" };
 }
 
 export function getQuery(query) {

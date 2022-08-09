@@ -12,10 +12,10 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				videogames: action.payload,
 			};
-		case "RESET_GAMES":
+		case "RESET_QUERY":
 			return {
 				...state,
-				videogames: [],
+				queryGames: [],
 			};
 		case "GET_QUERY":
 			return {

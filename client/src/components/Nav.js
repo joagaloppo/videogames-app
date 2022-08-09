@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { resetGames } from "../redux/actions";
+import { resetQuery } from "../redux/actions";
 
 import styles from "./styles/Nav.module.css";
 
@@ -11,7 +11,7 @@ export default function Nav() {
 	const history = useHistory();
 
 	const resetGame = () => {
-		dispatch(resetGames());
+		dispatch(resetQuery());
 	};
 
 	return (

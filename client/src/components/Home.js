@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { getGames, resetGames, getGenres, getQuery } from "../redux/actions";
+import { getGames, resetQuery, getGenres, getQuery } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 import HomeLoading from "./HomeLoading";
@@ -28,6 +28,7 @@ export default function Home() {
 
 	// VIDEOGAMES VARIABLE
 	const clearVideogames = useSelector((state) => state.videogames);
+	const queryGames = useSelector((state) => state.queryGames);
 	let videogames = [];
 	if (sort.length) videogames = [...sort];
 	else if (filter.length) videogames = [...filter];
@@ -53,7 +54,7 @@ export default function Home() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (input && input.match(/[^\s-]/)) {
-			dispatch(resetGames());
+			dispatch(resetQuery());
 			history.push(`?search=${input}`);
 			setFilter([]);
 			sortReset();
@@ -168,6 +169,22 @@ export default function Home() {
 		document.getElementsByClassName("sortRating")[0].id = "";
 	};
 
+	const loader = () => {
+		if (query) {
+			if (!queryGames.length) {
+				return [...Array(15)].map((a, b) => <HomeLoading key={b} />);
+			} else {
+				return queryGames.slice(15 * page, (page + 1) * 15).map((e) => ( <GameCard key={e.id} id={e.id} name={e.name} image={e.image} genres={e.genres} /> ));
+			}
+		} else {
+			if (!videogames.length) {
+				return [...Array(15)].map((a, b) => <HomeLoading key={b} />);
+			} else {
+				return videogames.slice(15 * page, (page + 1) * 15).map((e) => ( <GameCard key={e.id} id={e.id} name={e.name} image={e.image} genres={e.genres} /> ))
+			}
+		}
+	}
+
 	return (
 		<div className={styles.home}>
 			<div className={styles.container}>
@@ -254,48 +271,25 @@ export default function Home() {
 					</div>
 				</div>
 
-				{/* VIDEOGAMES CONTAINER */}
 				<div className={styles.videogames}>
-					{!videogames.length
-						? [...Array(15)].map((a, b) => <HomeLoading key={b} />)
-						: videogames &&
-						  videogames
-								.slice(15 * page, (page + 1) * 15)
-								.map((e) => (
-									<GameCard
-										key={e.id}
-										id={e.id}
-										name={e.name}
-										image={e.image}
-										genres={e.genres}
-									/>
-								))}
+					{loader()}
 				</div>
 
 				{/* PAGINATOR */}
-				{Math.ceil(videogames.length / 15) > 1 ? (
+				{ Math.ceil(videogames.length / 15) > 1 ? (
 					<div className={styles.paginator}>
-						{page > 0 ? (
-							<button
-								className={styles.paginator_back}
-								onClick={(e) => setPage(page - 1)}
-							/>
-						) : (
-							<div className={styles.spacer} />
-						)}
+						{ page > 0 ? ( <button className={styles.paginator_back} onClick={(e) => setPage(page - 1)}/> )
+						: ( <div className={styles.spacer} /> ) }
+
 						{page + 1} / {Math.ceil(videogames.length / 15)}
+						
 						{videogames.length > (page + 1) * 15 ? (
-							<button
-								className={styles.paginator_next}
-								onClick={(e) => setPage(page + 1)}
-							/>
-						) : (
+							<button className={styles.paginator_next} onClick={(e) => setPage(page + 1)} />
+							) : (
 							<div className={styles.spacer} />
 						)}
-					</div>
-				) : (
-					<div className={styles.paginator} />
-				)}
+					</div>)
+					: (<div className={styles.paginator} />)}
 			</div>
 		</div>
 	);
