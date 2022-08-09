@@ -32,17 +32,14 @@ export default function Home() {
 	let queryVideogames = []
 	if (sort.length) {
 		videogames = [...sort];
-		queryVideogames = [...sort]
+		queryVideogames = [...sort];
+	} else if (filter.length) {
+		videogames = [...filter];
+		queryVideogames = [...filter];
 	} else {
 		videogames = [...clearVideogames];
 		queryVideogames = [...queryGames];
 	}
-
-	
-	// else if (filter.length) videogames = [...filter];
-
-
-	// -----
 
 	// GENRES VARIABLE
 	const genres = useSelector((state) => state.genres);
@@ -108,23 +105,24 @@ export default function Home() {
 	};
 
 	const sortBy = (e) => {
-		let { name, id } = e.target;
+		const { name, id } = e.target;
+		const sortName = document.getElementsByClassName("sortName")[0];
+		const sortRating = document.getElementsByClassName("sortRating")[0];
 		let sortedVideogames = [];
-		let sortName = document.getElementsByClassName("sortName")[0];
-		let sortRating = document.getElementsByClassName("sortRating")[0];
 
-		if (filter.length)
+		if (filter.length) {
 			sortedVideogames = [...filter];
-		else if (query) 
-			sortedVideogames = [...queryVideogames];
-		else 
-		sortedVideogames = [...videogames];
+		} else if (query) {
+			sortedVideogames = [...queryGames];
+		} else {
+			sortedVideogames = [...clearVideogames];
+		}
 
 		if (filter.join("") !== "No games found") {
-
-		id === "desc"
-			? sortReset()
-			: name === "name"
+		if (id === "desc") {
+			sortReset();
+		} else  {
+			name === "name"
 			? sortedVideogames.sort((a, b) => {
 					let A = a ? a[name].toUpperCase() : null;
 					let B = b ? b[name].toUpperCase() : null;
@@ -153,10 +151,10 @@ export default function Home() {
 						return a.rating - b.rating;
 					}
 			  });
-
 			}
-		dispatch(sortGames(sortedVideogames));
-		dispatch(setPage(0));
+			dispatch(sortGames(sortedVideogames));
+			dispatch(setPage(0));
+		}
 	};
 
 	const sortReset = () => {
