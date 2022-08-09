@@ -24,14 +24,14 @@
     left: 60px;
 }
 
-.create, .back {
+.create {
     display: inline-block;
     position: absolute;
     top: 0;
     right: 90px;
 }
 
-.home a, .create a, .back a {
+.home a, .create a {
     display: inline-block;
     position: absolute;
     
@@ -49,16 +49,16 @@
     background-image: url(../img/home.png);
 }
 
-.create a {
+.create#plus a {
     background-image: url(../img/plus.png);
 }
 
-.back a {
+.create#cross a {
     background-image: url(../img/plus.png);
     transform: rotate(45deg);
 }
 
-.home a:hover, .create a:hover, .back a:hover  {
+.home a:hover, .create a:hover {
     opacity:1;
 }
 

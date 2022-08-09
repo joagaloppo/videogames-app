@@ -26,11 +26,11 @@ export default function Nav() {
 				</div>
 				<h1>VIDEOGAMES</h1>
 				{pathname !== "/create" ? (
-					<div className={styles.create}>
+					<div className={styles.create} id={styles.plus}>
 						<Link to="/create"></Link>
 					</div>
 				) : (
-					<div className={styles.back}>
+					<div className={styles.create} id={styles.cross}>
 						<a onClick={() => history.goBack()}></a>
 					</div>
 				)}
