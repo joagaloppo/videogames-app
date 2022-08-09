@@ -59,7 +59,8 @@ router.get("/", async (req, res) => {
 			})
 			.concat(apiVideogames);
 
-		return res.send(videogames);
+		if (videogames.length) { return res.send(videogames)
+		} else { return res.send(["No", "games", "found"]) }
 	}
 	// ------  FIN  ------ \\
 
@@ -102,7 +103,8 @@ router.get("/", async (req, res) => {
 		})
 		.concat(apiVideogames);
 
-	res.send(videogames);
+		if (videogames.length) { return res.send(videogames)
+		} else { return res.send(["No", "games", "found"]) }
 });
 
 module.exports = router;
