@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.home {
+    width:100%;
+    background-color: #f9f9f9;
+}
+
+.container {
+    width:1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+
+.finder {
+    display: flex;
+    justify-content: center;
+}
+
+.finder button {
+    font-family: 'Barlow', sans-serif;
+    background-color: #7c7c7c;
+    line-height: 0;
+    border-radius: 3px;
+}
+
+.input {
+    width: 300px;
+    max-width: 300px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-right: 0;
+    transition: 0.5s;
+    height: 44px;
+    border-radius: 3px 0 0 3px;
+}
+.input:focus {
+    border: 2px solid #555;
+    border-right: 0;
+    outline: none;
+}
+
+.input:focus + .searchButton {
+    border: 2px solid #555;
+    border-left: 0;
+    background-image: url('../img/search3.png');
+}
+
+.searchButton {
+    padding: 15.5px 0;
+    height: 44px;
+    border: 2px solid #ccc;
+    border-left:0;
+    border-radius: 0 3px 3px 0!important;
+    background-color: white!important;
+    background-image: url('../img/search2.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    transition: 0.5s;
+}
+
+.searchButton:hover {
+    cursor: pointer;
+}
+
+.videogames {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+
+
+/* DROPDOWN */
+/* DROPDOWN */
+/* DROPDOWN */
+
+.dropdown_btn, .clear_btn, .sort button {
+    color: white;
+    padding: 10px;
+    height: 44px;
+    margin: 0 14px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+
+    
+}
+
+.dropdown_btn {
+    background-image: url(../img/dropdown.png);
+    background-position: 86%;
+    background-repeat: no-repeat;
+    padding-right:40px;
+}
+
+.active {
+    background-color: #e9e9e9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    max-height: 300px;
+    overflow:auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown_content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown_content {
+    display: block;
+}
+
+.dropdown_btn:hover, .clear_btn:hover, .sort button:hover {
+    background-color: #3e8e41;
+}
+
+/* PAGINATOR */
+/* PAGINATOR */
+/* PAGINATOR */
+
+.paginator {
+        font-family: 'Barlow', sans-serif;
+        font-size:20px;
+        color: #555555;
+        padding: 20px 0 60px;
+        display: flex;
+        justify-content: center ;
+        align-items: center;
+}
+
+.paginator button {
+    margin: 0 30px;
+    width: 50px;
+    height: 24px;
+    background: #d5d5d5;
+    border-radius: 3px;
+    background-image: url('../img/arrow.png');
+    background-position: 20px;
+    background-repeat: no-repeat;
+    background-size: 10px;
+    border: 0;
+    cursor: pointer;
+}
+
+.paginator button:hover {
+    background-color: #c6c6c6;
+}
+
+.paginator_back {
+    transform: rotate(180deg);
+}
+
+.spacer {
+    margin: 0 30px;
+    width: 50px;
+    height: 24px;
+}
