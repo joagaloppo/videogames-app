@@ -24,36 +24,34 @@
 }
 
 .input {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
     width: 300px;
-    max-width: 300px;
+    opacity: 0.5;
     padding: 10px 15px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: 1px solid #555;
     border-right: 0;
     transition: 0.5s;
     height: 44px;
     border-radius: 3px 0 0 3px;
+    margin-left: 20px;
 }
-.input:focus {
-    border: 1px solid #555;
-    border-right: 0;
+
+.input:focus, .input:focus + .searchButton {
+    opacity:1;
     outline: none;
 }
 
-.input:focus + .searchButton {
-    border: 1px solid #555;
-    border-left: 0;
-    background-image: url('../img/search3.png');
-}
-
 .searchButton {
-    padding: 16.5px 0;
+    padding: 16px 0;
     height: 44px;
-    border: 1px solid #ccc;
+    border: 1px solid #555;
+    opacity:0.5;
     border-left:0;
     border-radius: 0 3px 3px 0!important;
     background-color: white!important;
-    background-image: url('../img/search2.png');
+    background-image: url('../img/search.png');
     background-position: 10px 10px;
     background-repeat: no-repeat;
     padding-left: 40px;

@@ -22,13 +22,19 @@
     position: absolute;
     top: 0;
     left: 60px;
-    transition: 0.5s;
 }
 
-.home a {
+.create, .back {
     display: inline-block;
     position: absolute;
-    background-image: url(../img/home.png);
+    top: 0;
+    right: 90px;
+}
+
+.home a, .create a, .back a {
+    display: inline-block;
+    position: absolute;
+    
     background-repeat: no-repeat;
     transition: 0.5s;
     height: 30px;
@@ -36,6 +42,24 @@
     background-size: 16px;
     background-position: 7px 7px;
     top: 10px;
+    opacity: 0.6;
+}
+
+.home a {
+    background-image: url(../img/home.png);
+}
+
+.create a {
+    background-image: url(../img/plus.png);
+}
+
+.back a {
+    background-image: url(../img/plus.png);
+    transform: rotate(45deg);
+}
+
+.home a:hover, .create a:hover, .back a:hover  {
+    opacity:1;
 }
 
 h1 {
@@ -49,46 +73,4 @@ h1 {
     text-align: center;
     color: #555555;
     font-weight: 600;
-}
-
-.create, .back {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    right: 90px;
-}
-
-.create a {
-    display: inline-block;
-    position: absolute;
-    background-image: url(../img/plus.png);
-    background-repeat: no-repeat;
-    transition: 0.5s;
-    height: 30px;
-    width: 30px;
-    background-size: 16px;
-    background-position: 7px 7px;
-    top: 10px;
-}
-
-.back a {
-    display: inline-block;
-    position: absolute;
-    background-image: url(../img/plus.png);
-    background-repeat: no-repeat;
-    transition: 0.5s;
-    transform: rotate(45deg);
-    height: 30px;
-    width: 30px;
-    background-size: 16px;
-    background-position: 7px 7px;
-    top: 10px;
-}
-
-.back a:hover {
-    transform: rotate(45deg) scale(1.15);
-}
-
-.home a:hover, .create a:hover  {
-    transform: scale(1.15);
 }
