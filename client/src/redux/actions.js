@@ -6,16 +6,16 @@ export function getGames() {
 	};
 }
 
-export function resetQuery() {
-	return { type: "RESET_QUERY" };
-}
-
 export function getQuery(query) {
 	return async function request(dispatch) {
 		await fetch(`http://localhost:3001/videogames/?name=${query}`)
 			.then((response) => response.json())
 			.then((data) => dispatch({ type: "GET_QUERY", payload: data }));
 	};
+}
+
+export function resetQuery() {
+	return { type: "RESET_QUERY" };
 }
 
 export function getGameDetail(id) {
@@ -26,7 +26,7 @@ export function getGameDetail(id) {
 	};
 }
 
-export function removeGameDetail() {
+export function resetGameDetail() {
 	return { type: "REMOVE_GAME_DETAIL" };
 }
 

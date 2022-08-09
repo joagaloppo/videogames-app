@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { getGameDetail, removeGameDetail } from "../redux/actions";
+import { getGameDetail, resetGameDetail } from "../redux/actions";
 
 import styles from "./styles/GameDetail.module.css";
 
@@ -15,7 +15,7 @@ export default function GameDetail() {
 	const detail = useSelector((state) => state.gameDetail);
 
 	React.useEffect(() => {
-		dispatch(removeGameDetail());
+		dispatch(resetGameDetail());
 		dispatch(getGameDetail(params.id));
 	}, [dispatch, params.id]);
 
