@@ -34,7 +34,7 @@ export default function GameCard({ id, name, image, genres }) {
 							.toString()
 							.replaceAll(",", " - ")}
 				</span>
-				<Link onClick={() => history.push(`/detail/${id}`)}>{name}</Link>
+				<a onClick={() => history.push(`/detail/${id}`)}>{name}</a>
 			</div>
 		</div>
 	);
