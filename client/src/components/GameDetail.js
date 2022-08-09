@@ -17,6 +17,8 @@ export default function GameDetail() {
 	React.useEffect(() => {
 		dispatch(resetGameDetail());
 		dispatch(getGameDetail(params.id));
+		console.log(detail);
+		// console.log(detail);
 	}, [dispatch, params.id]);
 
 	return (
@@ -68,7 +70,7 @@ export default function GameDetail() {
 							<ul>
 								{detail.platforms &&
 						detail.platforms.map((e) => (
-							<li key={e.platform.id}> {e.platform.name} </li>
+							<li key={e.id}> {e.name} </li>
 						))}
 							</ul>
 						</div>

@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
 				max: 5.0,
 			},
 			platforms: {
-				type: DataTypes.ARRAY(DataTypes.INTEGER),
+				type: DataTypes.ARRAY(DataTypes.JSON),
 				allowNull: false,
 			},
 		},

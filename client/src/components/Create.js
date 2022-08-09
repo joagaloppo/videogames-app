@@ -35,7 +35,7 @@ export default function Create() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(input);
+		console.log("INPUT:", input);
 		(async () => {
 			const rawResponse = await fetch("http://localhost:3001/videogame/", {
 				method: "POST",
@@ -47,7 +47,7 @@ export default function Create() {
 			});
 			const content = await rawResponse.json();
 
-			console.log(content);
+			console.log("CONTENT:", content);
 		})();
 	};
 
@@ -85,7 +85,7 @@ export default function Create() {
 		if (e.target.classList[0] !== "active")  {
 		setInput({
 			...input,
-			platforms: [...input.platforms, parseInt(id)]
+			platforms: [...input.platforms, {id: parseInt(id), name}]
 		});
 		} else {
 		setInput({
@@ -165,7 +165,7 @@ export default function Create() {
 													href="#/"
 													key={elem.id}
 													id={elem.id}
-													name={elem.name.toLowerCase()}
+													name={elem.name}
 													onClick={(e) => genreAdd(e)}
 												>
 													{elem.name}

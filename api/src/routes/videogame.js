@@ -30,17 +30,22 @@ router.get("/:id", async (req, res) => {
 			background_image: detail.image,
 			rating: detail.rating,
 			genres: detail.Genres,
-			// platforms: await Promise.all(
-			//     detail.platforms.map(e =>
-			//         axios.get(`https://api.rawg.io/api/platforms/${e}?key=${key}`)
-			//             .then(res => res.data.name)
-			//             .catch(e => { })
-			//     )),
+			platforms: detail.platforms
 		};
 	} else {
-		detail = await axios
+		const obj = await axios
 			.get(`${URL}/${id}${API_KEY}`)
-			.then((response) => response.data);
+			.then((response) => response.data )
+		
+		detail = {
+					background_image: obj.background_image,
+					released: obj.released,
+					rating: obj.rating,
+					name: obj.name,
+					genres: obj.genres,
+					description: obj.description_raw,
+					platforms: obj.platforms.map(e => e.platform),
+				}
 	}
 
 	return detail ? res.send(detail) : res.send("No se ha encontrado el juego.");
