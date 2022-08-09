@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { resetQuery } from "../redux/actions";
+import { resetQuery, resetFilter, resetSort, setPage } from "../redux/actions";
 
 import styles from "./styles/Nav.module.css";
 
@@ -12,16 +12,17 @@ export default function Nav() {
 
 	const resetGame = () => {
 		dispatch(resetQuery());
+		dispatch(resetSort());
+		dispatch(resetFilter());
+		dispatch(setPage(0));
+		history.push("/home");
 	};
 
 	return (
 		<div className={styles.nav}>
 			<div className={styles.container}>
 				<div className={styles.home}>
-					<Link
-						to="/home"
-						onClick={() => (pathname !== "/home" ? resetGame() : null)}
-					></Link>
+					<a onClick={() => resetGame()}/>
 				</div>
 				<h1>VIDEOGAMES</h1>
 				{pathname !== "/create" ? (

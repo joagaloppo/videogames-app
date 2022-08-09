@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { getGames, resetQuery, getGenres, getQuery } from "../redux/actions";
+import { getGames, getQuery, resetQuery, filterGames, resetFilter, sortGames, resetSort, getGenres, setPage } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 import HomeLoading from "./HomeLoading";
@@ -8,14 +8,6 @@ import GameCard from "./GameCard";
 import styles from "./styles/Home.module.css";
 
 export default function Home() {
-	// STATES
-	const [update, setUpdate] = React.useState(1);
-	const [input, setInput] = React.useState("");
-	const [filter, setFilter] = React.useState([]);
-	const [sort, setSort] = React.useState([]);
-	const [page, setPage] = React.useState(0);
-	// ----
-
 	// HOOKS
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -26,13 +18,30 @@ export default function Home() {
 	const query = new URLSearchParams(search).get("search");
 	// -----
 
+	// STATES
+	const [input, setInput] = React.useState("");
+	const page = useSelector((state) => state.page);
+	const sort = useSelector((state) => state.sortGames);
+	const filter = useSelector((state) => state.filterGames);
+	// ----
+
 	// VIDEOGAMES VARIABLE
 	const clearVideogames = useSelector((state) => state.videogames);
 	const queryGames = useSelector((state) => state.queryGames);
 	let videogames = [];
-	if (sort.length) videogames = [...sort];
-	else if (filter.length) videogames = [...filter];
-	else videogames = [...clearVideogames];
+	let queryVideogames = []
+	if (sort.length) {
+		videogames = [...sort];
+		queryVideogames = [...sort]
+	} else {
+		videogames = [...clearVideogames];
+		queryVideogames = [...queryGames];
+	}
+
+	
+	// else if (filter.length) videogames = [...filter];
+
+
 	// -----
 
 	// GENRES VARIABLE
@@ -56,62 +65,46 @@ export default function Home() {
 		if (input && input.match(/[^\s-]/)) {
 			dispatch(resetQuery());
 			history.push(`?search=${input}`);
-			setFilter([]);
+			dispatch(resetFilter());
 			sortReset();
-			setPage(0);
+			dispatch(setPage(0));
 			setInput("");
 		}
 	};
 
 	const filterBy = (e) => {
-		let { name } = e.target;
 		sortReset();
-		e.target.classList.toggle(styles.active);
-
+		const { name } = e.target;
 		let filteredVideogames = [];
 
-		if (filter.join("") !== "No games found") {
-			filter.length
-				? (filteredVideogames = [...filter])
-				: (filteredVideogames = [...clearVideogames]);
 
-			if (name === "api") {
-				filteredVideogames = filteredVideogames.filter(
-					(game) => typeof game.id !== "string"
-				);
-			} else if (name === "database") {
-				filteredVideogames = filteredVideogames.filter(
-					(game) => typeof game.id !== "number"
-				);
-			} else if (name !== "clear") {
-				filteredVideogames = filteredVideogames.filter((game) =>
+		if (query) {
+			filteredVideogames = [...queryGames]
+		} else {
+			filteredVideogames = [...clearVideogames]
+		}
+
+		if (name === "api") {
+			filteredVideogames = filteredVideogames.filter(
+				(game) => typeof game.id !== "string"
+			);
+		} else if (name === "database") {
+			filteredVideogames = filteredVideogames.filter(
+				(game) => typeof game.id !== "number"
+			);
+		} else {
+			filteredVideogames = filteredVideogames.filter((game) =>
 					game.genres.some((genre) => genre.name.toLowerCase() === name)
 				);
-			}
 		}
 
 		if (!filteredVideogames.length)
 			filteredVideogames = ["No ", "games ", "found"];
-		if (name === "clear") filteredVideogames = [];
 		if (filteredVideogames !== filter) {
-			setSort(filteredVideogames);
-			setFilter(filteredVideogames);
-			setPage(0);
+			dispatch(sortGames(filteredVideogames));
+			dispatch(filterGames(filteredVideogames));
+			dispatch(setPage(0));
 		}
-		update === 0 ? setUpdate(1) : setUpdate(0);
-	};
-
-	const filterReset = (e) => {
-		let list = document.getElementsByClassName(styles.active);
-		console.log(list);
-
-		for (let item of list) {
-			console.log(list[item]);
-			item.classList.remove(styles.active);
-		}
-
-		sortReset();
-		setFilter([]);
 	};
 
 	const sortBy = (e) => {
@@ -119,16 +112,22 @@ export default function Home() {
 		let sortedVideogames = [];
 		let sortName = document.getElementsByClassName("sortName")[0];
 		let sortRating = document.getElementsByClassName("sortRating")[0];
-		filter.length
-			? (sortedVideogames = [...filter])
-			: (sortedVideogames = [...clearVideogames]);
+
+		if (filter.length)
+			sortedVideogames = [...filter];
+		else if (query) 
+			sortedVideogames = [...queryVideogames];
+		else 
+		sortedVideogames = [...videogames];
+
+		if (filter.join("") !== "No games found") {
 
 		id === "desc"
 			? sortReset()
 			: name === "name"
 			? sortedVideogames.sort((a, b) => {
-					let A = a[name].toUpperCase();
-					let B = b[name].toUpperCase();
+					let A = a ? a[name].toUpperCase() : null;
+					let B = b ? b[name].toUpperCase() : null;
 					if (!id) {
 						e.target.id = "asc";
 						sortName.innerHTML = "Sort by Name ▼";
@@ -155,13 +154,13 @@ export default function Home() {
 					}
 			  });
 
-		setSort(sortedVideogames);
-		setPage(0);
-		update === 0 ? setUpdate(1) : setUpdate(0);
+			}
+		dispatch(sortGames(sortedVideogames));
+		dispatch(setPage(0));
 	};
 
 	const sortReset = () => {
-		setSort([]);
+		dispatch(resetSort());
 		document.getElementsByClassName("sortName")[0].innerHTML = "Sort by Name";
 		document.getElementsByClassName("sortName")[0].id = "";
 		document.getElementsByClassName("sortRating")[0].innerHTML =
@@ -169,12 +168,14 @@ export default function Home() {
 		document.getElementsByClassName("sortRating")[0].id = "";
 	};
 
+	// PARTS
+
 	const loader = () => {
 		if (query) {
-			if (!queryGames.length) {
+			if (!queryVideogames.length) {
 				return [...Array(15)].map((a, b) => <HomeLoading key={b} />);
 			} else {
-				return queryGames.slice(15 * page, (page + 1) * 15).map((e) => ( <GameCard key={e.id} id={e.id} name={e.name} image={e.image} genres={e.genres} /> ));
+				return queryVideogames.slice(15 * page, (page + 1) * 15).map((e) => ( <GameCard key={e.id} id={e.id} name={e.name} image={e.image} genres={e.genres} /> ));
 			}
 		} else {
 			if (!videogames.length) {
@@ -185,111 +186,72 @@ export default function Home() {
 		}
 	}
 
+	const paginator = () => {
+		if (!query) {
+			if (Math.ceil(videogames.length / 15) > 1) {
+				return (
+				<div className={styles.paginator}>
+					{ page > 0
+					? ( <button className={styles.paginator_back} onClick={(e) => dispatch(setPage(page - 1))}/> )
+					: ( <div className={styles.spacer} /> ) }
+
+					{page + 1} / {Math.ceil(videogames.length / 15)}
+					
+					{videogames.length > (page + 1) * 15
+					? ( <button className={styles.paginator_next} onClick={(e) => dispatch(setPage(page + 1))} /> ) 
+					: ( <div className={styles.spacer} /> )}
+				</div>
+				);
+		}
+	}
+}
+
 	return (
 		<div className={styles.home}>
 			<div className={styles.container}>
+
 				{/* FINDER DIV */}
 				<div className={styles.finder}>
+
 					{/* SEARCH */}
 					<div className={styles.search}>
 						<form className={styles.form}>
-							<input
-								className={styles.input}
-								name="search"
-								placeholder="Search a game..."
-								value={input}
-								onChange={(e) => handleChange(e)}
-							></input>
-							<button
-								className={styles.searchButton}
-								onClick={(e) => handleSubmit(e)}
-							/>
+							<input className={styles.input} name="search" placeholder="Search a game..." value={input} onChange={(e) => handleChange(e)} />
+							<button className={styles.searchButton} onClick={(e) => handleSubmit(e)}/>
 						</form>
 					</div>
 
 					{/* FILTER */}
 					<div className={styles.filter}>
-						{/* <button
-							name="clear"
-							className={styles.clear_btn}
-							onClick={(e) => filterReset(e)}
-						>
-							Clear filters
-						</button> */}
-
 						<div className={styles.dropdown}>
 							<button className={styles.dropdown_btn}>Genre</button>
-							<div className={styles.dropdown_content}>
-								{genres &&
-									genres.map((elem) => {
-										return (
-											<a
-												href="#/"
-												key={elem.id}
-												name={elem.name.toLowerCase()}
-												onClick={(event) => filterBy(event)}
-											>
-												{elem.name}
-											</a>
-										);
-									})}
-							</div>
+							<div className={styles.dropdown_content}> {genres && genres.map((elem) => { return ( <a href="#/" key={elem.id} name={elem.name.toLowerCase()} onClick={(event) => filterBy(event)} > {elem.name} </a> ); })} </div>
 						</div>
 
 						<div className={styles.dropdown}>
 							<button className={styles.dropdown_btn}>Origin</button>
 							<div className={styles.dropdown_content}>
-								<a href="#/" name="api" onClick={(e) => filterBy(e)}>
-									API
-								</a>
-								<a href="#/" name="database" onClick={(e) => filterBy(e)}>
-									Database
-								</a>
+								<a href="#/" name="api" onClick={(e) => filterBy(e)}>API</a>
+								<a href="#/" name="database" onClick={(e) => filterBy(e)}>Database</a>
 							</div>
 						</div>
 					</div>
 
 					{/* SORT */}
 					<div className={styles.sort}>
-						<button
-							name="name"
-							className="sortName"
-							id={""}
-							onClick={(e) => sortBy(e)}
-						>
-							Sort by Name
-						</button>
-
-						<button
-							name="rating"
-							className="sortRating"
-							id={""}
-							onClick={(e) => sortBy(e)}
-						>
-							Sort by Rating
-						</button>
+						<button name="name" className="sortName" id={""} onClick={(e) => sortBy(e)}>Sort by Name</button>
+						<button name="rating" className="sortRating" id={""} onClick={(e) => sortBy(e)}>Sort by Rating</button>
 					</div>
+
 				</div>
 
+				{/* CONTAINER */}
 				<div className={styles.videogames}>
 					{loader()}
 				</div>
 
 				{/* PAGINATOR */}
-				{ Math.ceil(videogames.length / 15) > 1 ? (
-					<div className={styles.paginator}>
-						{ page > 0 ? ( <button className={styles.paginator_back} onClick={(e) => setPage(page - 1)}/> )
-						: ( <div className={styles.spacer} /> ) }
-
-						{page + 1} / {Math.ceil(videogames.length / 15)}
-						
-						{videogames.length > (page + 1) * 15 ? (
-							<button className={styles.paginator_next} onClick={(e) => setPage(page + 1)} />
-							) : (
-							<div className={styles.spacer} />
-						)}
-					</div>)
-					: (<div className={styles.paginator} />)}
+				{paginator()}
 			</div>
 		</div>
 	);

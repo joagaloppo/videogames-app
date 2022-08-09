@@ -18,6 +18,23 @@ export function resetQuery() {
 	return { type: "RESET_QUERY" };
 }
 
+export function filterGames(list) {
+	return { type: "FILTER_GAMES", payload: list };
+}
+
+export function resetFilter() {
+	return { type: "RESET_FILTER" };
+}
+
+export function sortGames(list) {
+	return { type: "SORT_GAMES", payload: list };
+}
+
+export function resetSort() {
+	return { type: "RESET_SORT" };
+}
+
+
 export function getGameDetail(id) {
 	return async function request(dispatch) {
 		await fetch(`http://localhost:3001/videogame/${id}`)
@@ -40,4 +57,8 @@ export function getGenres() {
 
 export function postGame(game) {
 	return { type: "POST_GAME", payload: game };
+}
+
+export function setPage(number) {
+	return { type: "SET_PAGE", payload: number };
 }

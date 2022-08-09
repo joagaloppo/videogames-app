@@ -84,3 +84,11 @@ h1 {
     background-position: 7px 7px;
     top: 10px;
 }
+
+.back a:hover {
+    transform: rotate(45deg) scale(1.15);
+}
+
+.home a:hover, .create a:hover  {
+    transform: scale(1.15);
+}
