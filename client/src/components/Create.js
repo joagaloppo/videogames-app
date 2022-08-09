@@ -4,6 +4,8 @@ import { getGenres } from "../redux/actions";
 
 import styles from "./styles/Create.module.css";
 
+import platforms from "./platforms";
+
 export default function Create() {
 	const genres = useSelector((state) => state.genres);
 
@@ -49,19 +51,50 @@ export default function Create() {
 		})();
 	};
 
-	const handleClick = (e) => {
+	const genreAdd = (e) => {
 		console.log(genres);
-		console.log(e.target.id);
-		console.log(e.target.name);
+		const { name, id } = e.target;
+		console.log(id);
+		console.log(name);
+		
 		e.preventDefault();
+
+		if (e.target.classList[0] !== "active")  {
 		setInput({
 			...input,
-			genres: [...input.genres, parseInt(e.target.id)],
+			genres: [...input.genres, parseInt(id)]
 		});
+		} else {
+		setInput({
+			...input,
+			genres: [...input.genres].filter(e => e !== parseInt(id)),
+		});
+		}
 
-		e.target.classList[0] === "active"
-			? e.target.classList.remove("active")
-			: e.target.classList.add("active");
+		e.target.classList.toggle("active");
+	};
+
+	const platformAdd = (e) => {
+		console.log(platforms);
+		const { name, id } = e.target;
+		console.log(id);
+		console.log(name);
+		
+		e.preventDefault();
+
+		if (e.target.classList[0] !== "active")  {
+		setInput({
+			...input,
+			platforms: [...input.platforms, parseInt(id)]
+		});
+		} else {
+		setInput({
+			...input,
+			platforms: [...input.platforms].filter(e => e !== parseInt(id)),
+		});
+		}
+
+		e.target.classList.toggle("active");
 	};
 
 	return (
@@ -131,8 +164,9 @@ export default function Create() {
 												<a
 													href="#/"
 													key={elem.id}
-													name={elem.name}
-													onClick={(e) => handleClick(e)}
+													id={elem.id}
+													name={elem.name.toLowerCase()}
+													onClick={(e) => genreAdd(e)}
 												>
 													{elem.name}
 												</a>
@@ -140,7 +174,29 @@ export default function Create() {
 										})}
 								</div>
 							</div>
-							<label>Platforms</label>
+
+							<div className={styles.dropdown}>
+								<button className={styles.dropdown_btn}>
+									Platforms ({input.platforms.length})
+								</button>
+								<div className={styles.dropdown_content}>
+									{platforms &&
+										platforms.map((elem) => {
+											return (
+												<a
+													href="#/"
+													key={elem.id}
+													id={elem.id}
+													name={elem.name.toLowerCase()}
+													onClick={(e) => platformAdd(e)}
+												>
+													{elem.name}
+												</a>
+											);
+										})}
+								</div>
+							</div>
+
 						</div>
 
 						<input type="submit" value="Submit" className={styles.submit} />

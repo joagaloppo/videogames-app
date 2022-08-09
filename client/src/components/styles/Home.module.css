@@ -28,28 +28,28 @@
     max-width: 300px;
     padding: 10px 15px;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     border-right: 0;
     transition: 0.5s;
     height: 44px;
     border-radius: 3px 0 0 3px;
 }
 .input:focus {
-    border: 2px solid #555;
+    border: 1px solid #555;
     border-right: 0;
     outline: none;
 }
 
 .input:focus + .searchButton {
-    border: 2px solid #555;
+    border: 1px solid #555;
     border-left: 0;
     background-image: url('../img/search3.png');
 }
 
 .searchButton {
-    padding: 15.5px 0;
+    padding: 16.5px 0;
     height: 44px;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     border-left:0;
     border-radius: 0 3px 3px 0!important;
     background-color: white!important;
@@ -86,8 +86,6 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
-
-    
 }
 
 .dropdown_btn {

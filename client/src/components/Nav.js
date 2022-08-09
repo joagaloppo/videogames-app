@@ -31,7 +31,7 @@ export default function Nav() {
 					</div>
 				) : (
 					<div className={styles.back}>
-						<Link to="/home" onClick={() => history.goBack()}></Link>
+						<a onClick={() => history.goBack()}></a>
 					</div>
 				)}
 			</div>

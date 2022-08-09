@@ -66,10 +66,10 @@ export default function GameDetail() {
 						<div>
 							<h3>Platforms:</h3>
 							<ul>
-								{/* {detail.platforms &&
+								{detail.platforms &&
 						detail.platforms.map((e) => (
 							<li key={e.platform.id}> {e.platform.name} </li>
-						))} */}
+						))}
 							</ul>
 						</div>
 					</div>
