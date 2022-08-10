@@ -182,3 +182,17 @@
     width: 50px;
     height: 24px;
 }
+
+.notFound {
+    font-family: 'Barlow', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    color:  #eeeeee;
+    margin-top: 40px;
+    padding-right: 50px;
+    height: 150px;
+    background-image: url("../img/notFound.png");
+    background-repeat: no-repeat;
+    background-size: 34px;
+    background-position: 100% 0;
+}

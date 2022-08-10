@@ -48,8 +48,11 @@ export default function Home() {
 	React.useEffect(() => {
 		if (query) {
 			dispatch(getQuery(query));
+			
 		} else dispatch(getGames());
 		dispatch(getGenres());
+		// console.log(videogames);
+		console.log(videogames);
 	}, [dispatch, query]);
 
 	const handleChange = (e) => {
@@ -81,6 +84,7 @@ export default function Home() {
 			filteredVideogames = [...clearVideogames]
 		}
 
+		if (filteredVideogames.join("") !== "No games found") {
 		if (name === "api") {
 			filteredVideogames = filteredVideogames.filter(
 				(game) => typeof game.id !== "string"
@@ -93,7 +97,7 @@ export default function Home() {
 			filteredVideogames = filteredVideogames.filter((game) =>
 					game.genres.some((genre) => genre.name.toLowerCase() === name)
 				);
-		}
+		}}
 
 		if (!filteredVideogames.length)
 			filteredVideogames = ["No ", "games ", "found"];
@@ -154,7 +158,7 @@ export default function Home() {
 			}
 			dispatch(sortGames(sortedVideogames));
 			dispatch(setPage(0));
-		}
+		} else { return <div className={styles.notFound}>No games were found</div> }
 	};
 
 	const sortReset = () => {
@@ -173,13 +177,15 @@ export default function Home() {
 			if (!queryVideogames.length) {
 				return [...Array(15)].map((a, b) => <HomeLoading key={b} />);
 			} else {
-				return queryVideogames.slice(15 * page, (page + 1) * 15).map((e) => ( <GameCard key={e.id} id={e.id} name={e.name} image={e.image} genres={e.genres} /> ));
+				if (queryVideogames.join("") === "No games found") return <div className={styles.notFound}>No games were found</div>
+				else return queryVideogames.slice(15 * page, (page + 1) * 15).map((e) => ( <GameCard key={e.id} id={e.id} name={e.name} image={e.image} genres={e.genres} /> ));
 			}
 		} else {
 			if (!videogames.length) {
 				return [...Array(15)].map((a, b) => <HomeLoading key={b} />);
 			} else {
-				return videogames.slice(15 * page, (page + 1) * 15).map((e) => ( <GameCard key={e.id} id={e.id} name={e.name} image={e.image} genres={e.genres} /> ))
+				if (videogames.join("") === "No games found") return <div className={styles.notFound}>No games were found</div>
+				else return videogames.slice(15 * page, (page + 1) * 15).map((e) => ( <GameCard key={e.id} id={e.id} name={e.name} image={e.image} genres={e.genres} /> ))
 			}
 		}
 	}

@@ -60,7 +60,7 @@ router.get("/", async (req, res) => {
 			.concat(apiVideogames);
 
 		if (videogames.length) { return res.send(videogames)
-		} else { return res.send(["No", "games", "found"]) }
+		} else { return res.send(["No ", "games ", "found"]) }
 	}
 	// ------  FIN  ------ \\
 
