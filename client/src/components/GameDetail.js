@@ -56,7 +56,7 @@ export default function GameDetail() {
 
 						<div className={styles.separator}></div>
 
-						<h3>Description:</h3>
+						<h3 className={styles.description_title}>Description:</h3>
 						<div className={styles.description}>
 							{detail.description
 								? detail.description.replace(/<[^>]*>?/gm, "")
@@ -66,8 +66,8 @@ export default function GameDetail() {
 						<div className={styles.separator}></div>
 
 						<div>
-							<h3>Platforms:</h3>
-							<ul>
+							<h3 className={styles.platforms_title}>Platforms:</h3>
+							<ul className={styles.platforms}>
 								{detail.platforms &&
 						detail.platforms.map((e) => (
 							<li key={e.id}> {e.name} </li>

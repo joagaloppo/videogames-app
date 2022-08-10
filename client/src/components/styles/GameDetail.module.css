@@ -2,13 +2,18 @@
 
 .home {
     width:100%;
-    background-color: #f9f9f9;
+    background-color: #10141f;
 }
+
+.released, .rating, .name, .description_title, .description, .platforms_title, .platforms {
+    color: #eeeeee;
+}
+
 
 .container {
     width:800px;
     margin: 0 auto;
-    background-color: #f9f9f9;
+    background-color: #10141f;
 
 
     
@@ -92,8 +97,8 @@
 
 .genres {
     padding: 5px 10px;
-    background: #7693ff;
-    border-radius: 2px;
+    background: #26304d;
+    border-radius: 6px;
     font-size: 14px;
     color: white;
     margin-left: 10px;
