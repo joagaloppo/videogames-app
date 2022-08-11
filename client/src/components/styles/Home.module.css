@@ -30,7 +30,7 @@
     font-weight: 400;
     color: #eeeeee;
     font-size:14px;
-    width: 300px;
+    width: 200px;
     opacity: 1;
     padding: 10px 15px;
     box-sizing: border-box;
@@ -63,9 +63,9 @@
     border-left:0;
     border-radius: 0 6px 6px 0!important;
     background-image: url('../img/search.png');
-    background-position: 10px 10px;
+    background-position: 50%;
     background-repeat: no-repeat;
-    background-size: 20px;
+    background-size: 15px;
     padding-left: 40px;
     transition: 0.5s;
 }
@@ -99,10 +99,10 @@
 
 .dropdown_btn {
     background-image: url(../img/dropdown.png);
-    background-position: 82%;
+    background-position: 80% 50%;
     background-repeat: no-repeat;
-    background-size:10px;
-    padding-right:40px;
+    background-size: 10px;
+    padding-right: 40px;
     
 }
 
