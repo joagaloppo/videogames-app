@@ -54,16 +54,12 @@ export default function GameDetail() {
 								))}
 						</div>
 
-						<div className={styles.separator}></div>
-
 						<h3 className={styles.description_title}>Description:</h3>
 						<div className={styles.description}>
 							{detail.description
 								? detail.description.replace(/<[^>]*>?/gm, "")
 								: null}
 						</div>
-
-						<div className={styles.separator}></div>
 
 						<div>
 							<h3 className={styles.platforms_title}>Platforms:</h3>
