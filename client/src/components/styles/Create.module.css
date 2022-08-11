@@ -30,6 +30,66 @@
     font-size: 20px;
 }
 
+.input {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    color: #eeeeee;
+    font-size: 14px;
+    width: auto;
+    opacity: 1;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border: 1px solid #26304d;
+    border-right: 0;
+    transition: 0.5s;
+    height: 44px;
+    border-radius: 6px;
+    margin-left: 20px;
+    background: #10141f;
+}
+
+input[type="date"] {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    color: #eeeeee;
+    font-size: 14px;
+    width: auto;
+    opacity: 1;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border: 1px solid #26304d;
+    border-right: 0;
+    transition: 0.5s;
+    height: 44px;
+    border-radius: 6px;
+    margin-left: 20px;
+    background: #10141f;
+}
+
+.input::placeholder{
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    color: #eeeeee;
+    font-size:14px;
+}
+
+.error {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    align-content: space-around;
+    color: #e48787;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.closure {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .create {
     display: flex;
     flex-direction: column;
@@ -38,8 +98,8 @@
 
 .section {
     display: flex;
+    flex-direction: column;
     margin: 20px;
-    justify-content: space-between;
     width: 400px;
 }
 
