@@ -46,7 +46,7 @@
 .input::placeholder{
     font-family: 'Barlow', sans-serif;
     font-weight: 400;
-    color: #eeeeee;
+    color: #cccccc;
     font-size:14px;
 }
 
@@ -90,9 +90,9 @@
 
 .dropdown_btn, .clear_btn, .sort button {
     color: #eeeeee;
-    padding: 14px;
+    padding: 16px;
     height: 44px;
-    font-size: 16px;
+    font-size: 14px;
     border: none;
     cursor: pointer;
 }
@@ -112,14 +112,29 @@
 }
 
 .dropdown_content {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
     display: none;
     position: absolute;
-    background-color: #10141f;
+    background-color: #26304d;
     min-width: 160px;
     max-height: 300px;
-    overflow:auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
     z-index: 1;
+    border-radius: 10px;
+    top: 50px;
+}
+
+.dropdown_content::-webkit-scrollbar, .dropdown_content::-webkit-scrollbar-track {
+    background-color: #14192c;
+    width: 15px;
+    border-radius: 0 10px 10px 0;
+}
+
+.dropdown_content::-webkit-scrollbar-thumb {
+    background-color: #3e4b6f;
+    border-radius: 0 10px 10px 0;
 }
 
 .dropdown_content a {
