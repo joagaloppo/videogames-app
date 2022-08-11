@@ -14,26 +14,11 @@ export default function GameCard({ id, name, image, genres }) {
 	return (
 		<div className={styles.videogame_card}>
 			<div className={styles.image}>
-				<div
-					className={styles.loading}
-					style={loaded ? { display: "none" } : {}}
-				/>
-				<img
-					src={image}
-					onLoad={() => showImage()}
-					alt={name}
-					style={loaded ? {} : { display: "none" }}
-				/>
+				<div className={styles.loading} style={loaded ? { display: "none" } : {}} />
+				<img src={image} onLoad={() => showImage()} alt={name} style={loaded ? {} : { display: "none" }} />
 			</div>
 			<div className={styles.info}>
-				<i className={styles.cat_icon} />
-				<span>
-					{genres &&
-						genres
-							.map((e) => e.name)
-							.toString()
-							.replaceAll(",", " - ")}
-				</span>
+				<span> {genres && genres.map((e) => e.name).toString().replaceAll(",", " - ")} </span>
 				<a onClick={() => history.push(`/detail/${id}`)}>{name}</a>
 			</div>
 		</div>
