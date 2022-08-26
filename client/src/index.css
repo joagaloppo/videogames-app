@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap'); 
+
 body {
   margin: 0;
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
@@ -17,3 +19,75 @@ html {
   overflow-y: scroll;
 }
 
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #10141f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3e4b6f;
+}
+
+a {
+  cursor:pointer;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.landing .text {
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+
+.landing span, .landing a {
+  font-family: 'Barlow', sans-serif;
+  font-size:30px;
+  color: #eeeeee;
+}
+
+.text span {
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+span.bolder {
+  font-weight: 700;
+}
+
+.landing a {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 16px;
+  max-height: 44px;
+  border-radius: 6px;
+  background-color: #26304d;
+  padding-left: 36px;
+
+  background-image: url(./components/img/play.png);
+  background-position: 12% 50%;
+  background-repeat: no-repeat;
+  background-size: 10px;
+}
+
+.landing a:hover {
+  background-color: #3e4b6f;
+}

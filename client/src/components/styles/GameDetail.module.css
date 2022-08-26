@@ -77,17 +77,6 @@
     font-size: 16px;
 }
 
-.separator {
-    position: relative;
-    margin: 30px 0;
-    height: 1rem;
-    width: 100%;
-    background-image: url(../img/sep.png);
-    background-position: 0 50%;
-    background-repeat: repeat-x;
-    background-size: 3rem auto;
-}
-
 .title {
     font-size: 36px;
     margin-right: 10px;

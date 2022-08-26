@@ -2,7 +2,7 @@
 
 .nav {
     width:100%;
-    background-color: #10141f;
+    background-color: #26304d;
 }
 
 .container {
@@ -11,23 +11,23 @@
     font-family: 'Barlow', sans-serif;
     display: flex;
     position: relative;
-    margin: 20px auto;
-    width: 400px;
-    border-radius: 6px;
+    margin-inline: auto;
+    margin-bottom: 20px;
+    width: 500px;
 }
 
 .home {
     display: inline-block;
     position: absolute;
     top: 0;
-    left: 60px;
+    left: 0;
 }
 
 .create {
     display: inline-block;
     position: absolute;
     top: 0;
-    right: 90px;
+    right: 20px;
 }
 
 .home a, .create a {
@@ -36,11 +36,11 @@
     
     background-repeat: no-repeat;
     transition: 0.5s;
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     background-size: 14px;
-    background-position: 8.5px 8.5px;
-    top: 10px;
+    background-position: 50%;
+    top: 15px;
     opacity: 1;
 }
 
@@ -64,12 +64,15 @@
 h1 {
     display: inline-block;
     position: absolute;
-    top: 14.5px;
-    right: 153px;
-    font-size: 16px;    
+    top: 13px;
+    right: 0;
+    left: 0;
+    font-size: 16px;
     margin-block-start: 0;
     margin-block-end: 0;
     text-align: center;
     color: #eeeeee;
-    font-weight: 600;
+    font-weight: 400;
+    width: fit-content;
+    margin: 0 auto;
 }

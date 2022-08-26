@@ -24,7 +24,7 @@ export default function Nav() {
 				<div className={styles.home}>
 					<a onClick={() => resetGame()}/>
 				</div>
-				<h1>VIDEOGAMES</h1>
+				<h1>videogames</h1>
 				{pathname !== "/create" ? (
 					<div className={styles.create} id={styles.plus}>
 						<Link to="/create"></Link>

@@ -17,17 +17,19 @@ export default function GameDetailLoading() {
 					<div className={styles.genres} />
 				</div>
 
-				<h3 className={styles.description_title}>Description:</h3>
+				<h3 className={styles.description_title}/>
 				<div className={styles.description} />
 				<div className={styles.description} />
 				<div className={styles.description} />
 				<div className={styles.description} />
+				<div className={styles.description_final} />
 
-				<h3 className={styles.platforms_title}>Platforms:</h3>
+				<h3 className={styles.description_title}/>
 				<div className={styles.description} />
 				<div className={styles.description} />
 				<div className={styles.description} />
 				<div className={styles.description} />
+				<div className={styles.description_final} />
 			</div>
 		</div>
 	);

@@ -152,6 +152,15 @@
     display: block;
 }
 
+.dropdown::after {
+    content: " ";
+    width: 82%;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+}
+
 .dropdown_btn:hover, .clear_btn:hover, .sort button:hover {
     background-color: #3e4b6f;
 }
@@ -206,7 +215,7 @@
     margin-top: 40px;
     padding-right: 50px;
     height: 150px;
-    background-image: url("../img/notFound.png");
+    background-image: url("../img/404.png");
     background-repeat: no-repeat;
     background-size: 34px;
     background-position: 100% 0;
