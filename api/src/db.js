@@ -6,9 +6,24 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize( process.env.DATABASE_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// const sequelize = new Sequelize( process.env.DATABASE_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false // <<<<<<< YOU NEED THIS
+//     }
+//   },
+// });
+
+const sequelize = new Sequelize({
+  database: "d1f9rcl5dq8jq7",
+  username: "mdmoqdbqgjevxv",
+  password: "b2a8d3ecbdbf2bf693b14fd867443ad314f974c18964aaec1078204af3afd1e4",
+  host: "ec2-54-91-223-99.compute-1.amazonaws.com",
+  port: 5432,
+  dialect: "postgres",
   dialectOptions: {
     ssl: {
       require: true,
@@ -16,6 +31,7 @@ const sequelize = new Sequelize( process.env.DATABASE_URL || `postgres://${DB_US
     }
   },
 });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
