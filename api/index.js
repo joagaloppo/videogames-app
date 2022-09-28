@@ -18,13 +18,11 @@ conn.sync({ force: true }).then(() => {
 		let testVideogame = await Videogame.create({
 			name: "Age of Henry",
 			description: "Lorem Ipsum",
-			// platforms: [ 1, 2 ],
-			platforms: [ {id: 187, name: 'playstation 5'}, {id: 7, name: 'nintendo switch'} ],
+			platforms: [ {id: 187, name: 'Playstation 5'}, {id: 7, name: 'Nintendo Switch'} ],
 			image: "https://thumbs.dreamstime.com/b/golden-retriever-dog-21668976.jpg",
 			released: "2020-11-18",
 			rating: 4.4,
 		});
-
 		await testVideogame.addGenres([2, 5, 10]);
 	});
 });

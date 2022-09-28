@@ -235,8 +235,8 @@ export default function Home() {
 						<div className={styles.dropdown}>
 							<button className={styles.dropdown_btn}>Origin</button>
 							<div className={styles.dropdown_content}>
-								<a href="#/" name="api" onClick={(e) => filterBy(e)}>API</a>
-								<a href="#/" name="database" onClick={(e) => filterBy(e)}>Database</a>
+								<a name="api" onClick={(e) => filterBy(e)}>API</a>
+								<a name="database" onClick={(e) => filterBy(e)}>Database</a>
 							</div>
 						</div>
 					</div>

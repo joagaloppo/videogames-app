@@ -48,7 +48,7 @@ export default function Create() {
 		if (input.description.length < 10) { setErrDescription("Enter a description of at least 10 characters"); valid = false; }
 		else { setErrDescription("") }
 
-		if (!/^https[^\?]*.(jpg|jpeg|png)(\?(.*))?$/gmi.test(input.image)) { setErrImage("Enter a valid JPG / PNG image url"); valid = false;  }
+		if (!/^https[^]*.(jpg|jpeg|png)(\?(.*))?$/gmi.test(input.image)) { setErrImage("Enter a valid JPG / PNG image url"); valid = false;  }
 		else { setErrImage("") }
 
 		if (input.released.length !== 10) { setErrReleased("Enter a valid date"); valid = false;  }
